@@ -23,5 +23,9 @@ namespace TileSpace {
 			tileNumber = Number; 
 			this.direction = direction;
 		}
+			
+		virtual public void SetDirection (int number){
+			print ("hello");
+		}
 	}
 }

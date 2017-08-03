@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 
 		DontDestroyOnLoad(gameObject);
 
-		boardScript = GetComponent<BoardManager>();
+		boardScript = GetComponent<BoardManager> ();
 		stageInfo = GetComponent<StageManager> ();
 
 		InitGame();
