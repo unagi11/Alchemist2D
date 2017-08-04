@@ -11,7 +11,7 @@ public class BoardManager : MonoBehaviour
 	public GameObject[] unit;//바닥 위에 깔리는 tiles;
 
 	private Transform boardHolder;
-	private float[,] tileMap;//floor만 깔아둔다.
+	private  int[,] tileMap;//floor만 깔아둔다.
 
 	void BoardSetup(int cols, int rows)
 	{
@@ -25,9 +25,9 @@ public class BoardManager : MonoBehaviour
 				if (tileMap [x, y] == 0.0)
 					continue;
 				else{
-					tileNum = (int)(tileMap [x, y] - tileMap [x, y] % 1);
-					directNum = (int)((tileMap [x, y] % 1) * 10);
-				//	print (tileNum+ ""+ directNum);
+					tileNum = tileMap [x, y] / 10;
+
+					directNum = tileMap [x, y] % 10;
 				}
 				GameObject toInstantiate = null;
 				toInstantiate = floorTiles [tileNum];
@@ -36,12 +36,11 @@ public class BoardManager : MonoBehaviour
 				instance.transform.SetParent (boardHolder);
 
 				if (toInstantiate.GetComponent<Solid> ()) {
-					SC = (Tile)toInstantiate.GetComponent<Solid> ();
+					SC = (Tile)instance.GetComponent<Solid> ();
 					SC.SetDirection(directNum);
 				}
 				else if (toInstantiate.GetComponent<Fluid> ()) {
-					
-					SC = (Tile)toInstantiate.GetComponent<Fluid> ();
+					SC = (Tile)instance.GetComponent<Fluid> ();
 					SC.SetDirection(directNum);
 				}
 			}
@@ -51,7 +50,7 @@ public class BoardManager : MonoBehaviour
 	}
 
 
-	public void SetupScene(float [,] map)
+	public void SetupScene(int [,] map)
 	{
 		tileMap = map;
 		/*사실 floor를 원소로 갖는 자료구조 list를 이용해서 할까도 생각했지만,

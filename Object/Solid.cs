@@ -22,7 +22,7 @@ public class Solid : Tile{
 			break;
 
 		case 2:
-			transform.eulerAngles = new Vector3 (0, 0, 180);
+			this.gameObject.transform.eulerAngles = new Vector3 (0, 0, 180);
 			break;
 
 		case 3:

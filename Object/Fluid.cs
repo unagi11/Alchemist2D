@@ -13,8 +13,10 @@ public class Fluid : Tile{
 		Animator animator = gameObject.GetComponent<Animator> ();
 		Transform tf = transform;
 		direction = number;
+
+
 		switch (number) {
-				case 0:
+		case 0:
 			tf.eulerAngles = new Vector3 (0, 0, 0);
 			animator.SetBool ("flow", false);
 			print (number);
