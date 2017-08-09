@@ -3,16 +3,23 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
-	public float speed = 1f;
-	private SpriteRenderer sprd;
+	public float OriginSpeed = 5f;
+	public float CurrentSpeed = 5f;
+
+	private SpriteRenderer SpRd;
+
+
+	public static PlayerController PCinstance;
+
 	void Start()
 	{
-		sprd = GetComponent<SpriteRenderer>();
+		PCinstance = this;
+		SpRd = GetComponent<SpriteRenderer>();
 	}
 
 	void FixedUpdate()
 	{
-		Move();			
+		Move();
 	}
 
 	void Move()
@@ -26,29 +33,29 @@ public class PlayerController : MonoBehaviour
 		if (moveVertical < 0)
 		{
 			transform.eulerAngles = new Vector3(0, 0, 90);
-			sprd.flipX = true;
+			SpRd.flipX = true;
 			VerticalVector = Vector3.down;
 		}
 		else if (moveVertical > 0)
 		{
 			transform.eulerAngles = new Vector3(0, 0, 90);
-			sprd.flipX = false;
+			SpRd.flipX = false;
 			VerticalVector = Vector3.up;
 		}
 
 		if (moveHorizontal < 0)
 		{
 			transform.eulerAngles = new Vector3(0, 0, 0);
-			sprd.flipX = true;
+			SpRd.flipX = true;
 			HorizontalVector = Vector3.left;
 		}
 		else if (moveHorizontal > 0)
 		{
 			transform.eulerAngles = new Vector3(0, 0, 0);
-			sprd.flipX = false;
+			SpRd.flipX = false;
 			HorizontalVector = Vector3.right;
 		}		
 
-		transform.position += (HorizontalVector + VerticalVector) * speed * Time.deltaTime;
+		transform.position += (HorizontalVector + VerticalVector) * CurrentSpeed * Time.deltaTime;
 	}
 }

@@ -8,11 +8,11 @@ public class Solid : Tile{
 
 	public bool blocking;
 
-	override public void SetDirection(int number)//오버라이딩
+	override public void SetState(int state)//오버라이딩
 	{
-		direction = number;
+		tileState = state;
 
-		switch (number) {
+		switch (state) {
 		case 0:
 			transform.eulerAngles = new Vector3 (0, 0, 0);
 			break;
@@ -30,4 +30,12 @@ public class Solid : Tile{
 			break;
 		}
 	}
+
+
+/*	void OnCollisionEnter2D(Collision2D other)
+	{
+		print ("'" + other.gameObject.name + "' Entered in Collision '" + gameObject.name + "'");
+	}*/
+
+
 }
