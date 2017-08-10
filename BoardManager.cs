@@ -19,10 +19,8 @@ public class BoardManager : MonoBehaviour
 		Tile instanceTileSC;//인스턴스화 한 타일의 Solid 혹은 Fluid코드를 Tile로 업캐스팅한다.
 		boardHolder = new GameObject("Board").transform;
 
-		for (int y = 0; y < rows; y++)//10
-		{
-			for (int x = 0; x < cols; x++)//16
-			{
+		for (int y = 0; y < rows; y++) {//10
+			for (int x = 0; x < cols; x++) {//16
 				tileNumber = tileMap [y, x] / 10;//10의 자리 = 타일 번호
 				tileState = tileMap [y, x] % 10;//1의 자리 = 상태 번호호
 
@@ -31,17 +29,16 @@ public class BoardManager : MonoBehaviour
 				instanceTileSC = instance.GetComponent<Tile> ();
 				instanceTileSC.SetState(tileState);//tileState만 입력한다. tileNumber는 이미 입력되어있다.
 				instanceTileSC.SetLocation(x, rows - y - 1);
-
 				instance.transform.SetParent (boardHolder);
 			}
 		}
-
 		Instantiate (Unit [0], new Vector3 (1, 1, 0), Quaternion.identity);
+		Instantiate (Unit [1], new Vector3 (4, 2, 0), Quaternion.identity);
+		Instantiate (Unit [1], new Vector3 (4, 3, 0), Quaternion.identity);
 
-		for (int y = 0; y < rows; y++)//10
-		{
-			for (int x = 0; x < cols; x++)//16
-			{
+
+		for (int y = 0; y < rows; y++) {//10
+			for (int x = 0; x < cols; x++) {//16
 				instanceTileSC = boardHolder.GetChild (x + (rows - y - 1) * cols).GetComponent<Tile> ();//실제로는 0번째가 (9, 0)이다. 그래서 (0,0)부터 시작하기 위해서 저렇게 된다.
 				if (instanceTileSC.tileY != 0) {//맨아래가 아니면
 					instanceTileSC.downT = boardHolder.GetChild (x + (rows - y) * cols).gameObject;
