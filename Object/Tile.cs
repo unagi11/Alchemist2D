@@ -7,7 +7,7 @@ namespace TileSpace {
 	{
 		public int tileNumber;//타일의 번호
 		public int tileState;//타일의 상태(방향이라던가 애니메이션이라던가)
-		public int tileX, tileY;
+		public float tileX, tileY;
 
 		public float tileSpeed = 0f;
 
@@ -19,6 +19,8 @@ namespace TileSpace {
 		}
 
 		public void SetLocation (int X, int Y){
+			tileX = X;
+			tileY = Y;
 			transform.position = new Vector3 (X, Y, 0f);
 		}
 

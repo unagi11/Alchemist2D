@@ -79,9 +79,4 @@ public class Fluid : Tile{
 		}
 		other.attachedRigidbody.velocity = (other.attachedRigidbody.velocity.normalized + flowVector) * flowSpeed;
 	}
-
-	void OnCollisionEnter2D(Collision2D other)
-	{
-		print ("'" + other.gameObject.name + "' Entered in Collision '" + gameObject.name + "'");
-	}
 }
